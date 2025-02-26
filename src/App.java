@@ -1,7 +1,7 @@
 public class App {
     public static void main(String[] args) throws Exception {
         Pizza pizza = new Pizza();
-        pizza.takeOrder("5678", 50.00);
-        
-    }
+        pizza.takeOrder("DEF_SOH_099", 15.00);
+        pizza.makePizza("Mozzarella Cheese", "$15");
+       }
 }
