@@ -22,7 +22,8 @@ public class Pizza {
         this.orderTotal = DEF_ORDER_TOTAL;
         this.drinks = "Cola";
         this.sides = "Bread";
-    }
+        }
+    
 
     public String getpizzaIngredients(){
         return pizzaIngredients;
@@ -115,5 +116,84 @@ public class Pizza {
     public void showReceipt(){
         printReceipt();
     }
+
+
+public class CardPaymentProcessor { 
+    public String cardNumber;
+        public String expiryDate;
+        public int cvv;
+    public void processCardPayment() {
+       int cardLength = this.cardNumber.length();
+            if (cardLength == 14) {
+                System.out.println("Card accepted");
+            } else {
+                System.out.println("Invalid card");
+                return;
+            }
     
-}
+            char firstChar = cardNumber.charAt(0);
+            int firstCardDigit = Integer.parseInt(String.valueOf(firstChar));
+    
+            String blacklistedNumber = "01234567890123";
+            if (cardNumber.equals(blacklistedNumber)) {
+                System.out.println("Card is blacklisted. Please use another card");
+            }
+            else {
+                System.out.println("Card is not blacklisted");
+                return;
+            }
+    
+            String lastFourStr = cardNumber.substring(cardLength - 4);
+            int lastFourDigits = Integer.parseInt(lastFourStr);
+    
+            StringBuilder cardNumberToDisplay = new StringBuilder();
+            cardNumberToDisplay.append(cardNumber.charAt(0));
+            for (int i = 1; i < cardLength - 4; i++) {
+                cardNumberToDisplay.append('*');
+            }
+            cardNumberToDisplay.append(lastFourStr);
+    
+            System.out.println("First digit of the card: " + firstCardDigit);
+            System.out.println("Last four digits of the card: " + lastFourDigits);
+            System.out.println("Card number to display: " + cardNumberToDisplay.toString());
+        }
+    
+        public static void main(String[] args) {
+            Pizza pizza = new Pizza();
+            
+           
+            
+            CardPaymentProcessor processor = pizza.new CardPaymentProcessor();
+            processor.cardNumber = "67890123456789";
+            processor.expiryDate = "12/26";
+            processor.cvv = 456;
+            processor.processCardPayment();
+        }
+    } 
+     class SpecialOffer {
+     
+        public String specialPrice;
+        public String pizzaOfTheDay;
+        public String sideOfTheDay;
+        
+        public void specialOfTheDay() {
+            this.pizzaOfTheDay = "Margherita Pizza";
+            this.sideOfTheDay = "French Fries";
+            this.specialPrice = "$10.99";
+            
+            String result = "Pizza of the day: " + pizzaOfTheDay + "\n";
+            result = result + "Side of the day: " + sideOfTheDay + "\n";
+            result = result + "Special price: " + specialPrice + "\n";
+    
+            
+            System.out.println(result);
+        }
+    
+        public static void main(String[] args) {
+            Pizza pizza = new Pizza();
+            SpecialOffer offer = pizza.new SpecialOffer();
+            offer.specialOfTheDay();
+        }
+    }
+}        
+    
